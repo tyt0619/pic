@@ -1,6 +1,7 @@
 package com.example.UI;
 
 import java.io.File;
+<<<<<<< HEAD
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -8,6 +9,12 @@ import com.example.UIL.R;
 import com.example.utils.DownloadImgUtils;
 
 import android.content.Context;
+=======
+
+import com.example.demo_zhy_18_networkimageloader.R;
+import com.zhy.utils.DownloadImgUtils;
+
+>>>>>>> 3de3f0217f7dca79ffa7836a187bb308aea9c011
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,13 +23,19 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+<<<<<<< HEAD
 import android.widget.Toast;
+=======
+>>>>>>> 3de3f0217f7dca79ffa7836a187bb308aea9c011
 
 public class ImageActivity extends FragmentActivity{
 
 	String ImgURI="";
 	ImageView image;
+<<<<<<< HEAD
 	String path="";
+=======
+>>>>>>> 3de3f0217f7dca79ffa7836a187bb308aea9c011
 	
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -39,6 +52,7 @@ public class ImageActivity extends FragmentActivity{
 	{
 		Log.i("click", "done");
 		//download  uri= ImgURI
+<<<<<<< HEAD
 //		DownloadImgUtils.downloadImgByUrl(ImgURI,new File(Environment.getExternalStorageDirectory().getPath()+"/image"));
 		new  DownLoadAsync().execute("");
 	}
@@ -119,6 +133,13 @@ public class ImageActivity extends FragmentActivity{
 	
 	
 	class ImageAsync extends AsyncTask<String,Void,Void>{
+=======
+		DownloadImgUtils.downloadImgByUrl(ImgURI,new File(Environment.getExternalStorageDirectory().getPath()+"/image"));
+	}
+	
+	class ImageAsync extends AsyncTask<String,Void,Void>{
+
+>>>>>>> 3de3f0217f7dca79ffa7836a187bb308aea9c011
 		Bitmap imap;
 		@Override
 		protected Void doInBackground(String... arg0) {
