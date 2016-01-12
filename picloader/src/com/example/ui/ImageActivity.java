@@ -7,6 +7,8 @@ import java.io.OutputStream;
 
 import com.example.picloader.R;
 import com.example.utils.DownloadImgUtils;
+import com.example.utils.ImageSizeUtil;
+import com.example.utils.ImageSizeUtil.ImageSize;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -125,7 +127,8 @@ public class ImageActivity extends FragmentActivity{
 		@Override
 		protected Void doInBackground(String... arg0) {
 			// TODO Auto-generated method stub
-			imap=DownloadImgUtils.downloadImgByUrl(ImgURI,2,4);
+			ImageSize imagesize=ImageSizeUtil.getImageViewSize(image);
+			imap=DownloadImgUtils.downloadImgByUrl(ImgURI,imagesize.width,imagesize.height);
 			Log.w("width", imap.getWidth()+"");
 			return null;
 		}
