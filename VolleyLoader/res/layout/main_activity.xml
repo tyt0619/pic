@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+	<TextView
+	    android:id="@+id/textView1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="true"
+	    android:layout_marginLeft="32dp"
+	    android:layout_marginTop="64dp"
+	    android:text="Server IP:"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	<EditText
+	    android:id="@+id/serverIp"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/textView1"
+	    android:layout_below="@+id/textView1"
+	    android:layout_marginTop="14dp"
+	    android:ems="10" />
+
+	<EditText
+	    android:id="@+id/port"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/textView2"
+	    android:layout_centerVertical="true"
+	    android:ems="10" />
+
+	<TextView
+	    android:id="@+id/textView2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/serverIp"
+	    android:layout_below="@+id/serverIp"
+	    android:layout_marginTop="24dp"
+	    android:text="Port:"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	<TextView
+	    android:id="@+id/textView3"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentTop="true"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="23dp"
+	    android:text="PicLoader"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	<Button
+	    android:id="@+id/button1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/textView3"
+	    android:layout_below="@+id/port"
+	    android:layout_marginTop="39dp"
+	    android:text="Enter" />
+
+</RelativeLayout>
