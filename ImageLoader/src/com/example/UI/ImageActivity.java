@@ -27,6 +27,8 @@ public class ImageActivity extends FragmentActivity{
 	String ImgURI="";
 	ImageView image;
 	String path="";
+	private ImageLoader mImageLoader=ImageLoader.getInstance();
+	DisplayImageOptions options;
 	
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -36,14 +38,20 @@ public class ImageActivity extends FragmentActivity{
 		setContentView(R.layout.imagelayout);
 		ImgURI=getIntent().getExtras().getString("KEY2");
 		image=(ImageView) findViewById(R.id.imagesrc);
-		new ImageAsync().execute("");
+		
+		options = new DisplayImageOptions.Builder()
+		.showStubImage(R.drawable.pictures_no)
+		.showImageForEmptyUri(R.drawable.ic_empty)
+		.showImageOnFail(R.drawable.ic_error)
+		.bitmapConfig(Bitmap.Config.RGB_565)	 //设置图片的解码类型
+		.build();
+		
+		mImageLoader.displayImage(ImgURI, image,options);
 	}
 
 	public void downLoad(View view)
 	{
 		Log.i("click", "done");
-		//download  uri= ImgURI
-//		DownloadImgUtils.downloadImgByUrl(ImgURI,new File(Environment.getExternalStorageDirectory().getPath()+"/image"));
 		new  DownLoadAsync().execute("");
 	}
 	
@@ -117,29 +125,6 @@ public class ImageActivity extends FragmentActivity{
 			else{
 				Toast.makeText(ImageActivity.this, "下载失败,请重试", Toast.LENGTH_LONG).show();
 			}
-		}
-	}
-	
-	
-	
-	class ImageAsync extends AsyncTask<String,Void,Void>{
-		Bitmap imap;
-		@Override
-		protected Void doInBackground(String... arg0) {
-			// TODO Auto-generated method stub
-			//ImageSize imagesize=ImageSizeUtil.getImageViewSize(image);
-			imap=DownloadImgUtils.downloadImgByUrl(ImgURI,2,4);
-			Log.w("width", imap.getWidth()+"");
-			//mImageLoader.displayImage(ImgURI, image);
-			
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			image.setImageBitmap(imap);
 		}
 	}
 	
