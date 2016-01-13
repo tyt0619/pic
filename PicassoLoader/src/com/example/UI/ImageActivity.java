@@ -9,6 +9,7 @@ import com.example.utils.DownloadImgUtils;
 import com.squareup.picasso.Picasso;
 
 import android.content.Context;
+import android.graphics.Bitmap.Config;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -42,6 +43,7 @@ public class ImageActivity extends FragmentActivity{
         .placeholder(R.drawable.pictures_no) 
         .error(R.drawable.ic_error)
         .tag(context)
+        .config(Config.RGB_565)
         .into(image);
 	}
 

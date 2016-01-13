@@ -1,10 +1,16 @@
 package com.example.picasso;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
+
 import com.example.picasso.R;
+import com.example.utils.LoadTime;
 
 public abstract class AbsSingleFragmentActivity extends FragmentActivity
 {
@@ -27,6 +33,25 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 	}
 	
 	
+
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		
+		long sum=0;
+		Iterator iter = LoadTime.map.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry entry = (Map.Entry) iter.next();
+			String key = (String) entry.getKey();
+			Long val = (Long) entry.getValue();
+			sum+=val;
+		}
+		Log.e("average:",LoadTime.map.size()+":"+sum*1.0/LoadTime.map.size()+"");
+	}
+
+
 
 
 	protected abstract Fragment createFragment();

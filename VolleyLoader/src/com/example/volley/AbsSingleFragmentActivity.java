@@ -42,7 +42,7 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 			Long val = (Long) entry.getValue();
 			sum+=val;
 		}
-		Log.e("average:",LoadTime.map.size()+":"+sum/LoadTime.map.size()+"");
+		Log.e("average:",LoadTime.map.size()+":"+sum*1.0/LoadTime.map.size()+"");
 	}
 	
 
