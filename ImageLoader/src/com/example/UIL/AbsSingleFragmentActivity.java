@@ -18,6 +18,7 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -43,15 +44,21 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 			fm.beginTransaction().add(R.id.id_fragmentContainer, fragment)
 					.commit();
 		}
-		
-		//System.out.println(cacheDir.getAbsolutePath());
+		File pic_dir=Environment.getExternalStorageDirectory();
+		String cacheName=pic_dir.getAbsolutePath()+"/imagecache";
+		File cachedir=new File(cacheName);
+		if(!cachedir.exists() || !cachedir.isDirectory()){
+			cachedir.mkdir();
+		}
+		System.out.println(cachedir.getAbsolutePath());
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
 		 			.threadPriority(Thread.NORM_PRIORITY - 2)
 			        .threadPoolSize(4)
 				 	.denyCacheImageMultipleSizesInMemory()
 				 	//.discCache(new UnlimitedDiscCache(cacheDir))
+				 	.discCache(new UnlimitedDiscCache(cachedir))
 				 	//.discCacheFileCount(50)
-				 	.discCacheSize(50*1024*1024)//硬盘缓存的大小
+				 	.discCacheSize(100*1024*1024)//硬盘缓存的大小
 			        .discCacheFileNameGenerator(new Md5FileNameGenerator())//保存uri的名称用md5
 			        //.discCacheFileNameGenerator(new HashCodeFileNameGenerator())//将保存时的URI用hashcode加密
 			        .tasksProcessingOrder(QueueProcessingType.LIFO) 
@@ -69,17 +76,24 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		
 		long sum=0;
+		long sum2=0;
 		Iterator iter = LoadTime.map.entrySet().iterator();
+		Iterator iter2 = LoadTime.map2.entrySet().iterator();
 		while (iter.hasNext()) {
 			Map.Entry entry = (Map.Entry) iter.next();
 			String key = (String) entry.getKey();
 			Long val = (Long) entry.getValue();
 			sum+=val;
 		}
-		Log.e("average:",LoadTime.map.size()+":"+sum*1.0/LoadTime.map.size()+"");
-		
+		while (iter2.hasNext()) {
+			Map.Entry entry = (Map.Entry) iter2.next();
+			String key = (String) entry.getKey();
+			Long val = (Long) entry.getValue();
+			sum2+=val;
+		}
+		Log.e("average1:",LoadTime.map.size()+":"+sum*1.0/LoadTime.map.size()+"");
+		Log.e("average2:",LoadTime.map.size()+":"+sum2*1.0/LoadTime.map2.size()+"");
 	}
 
 

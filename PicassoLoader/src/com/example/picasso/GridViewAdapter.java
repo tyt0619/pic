@@ -80,10 +80,13 @@ public class GridViewAdapter extends BaseAdapter{
 		public Bitmap transform(Bitmap source) {
 			// TODO Auto-generated method stub
 			long finish_time=System.currentTimeMillis();
+			long loadtime=finish_time-start_time;
 			if(LoadTime.map.get(url) == null){
-				LoadTime.map.put(url, finish_time-start_time);
-				int loadtime=(int) (finish_time-start_time);
-				Log.e("loadtime",url+":"+loadtime+"-"+start_time+"-"+finish_time);
+				LoadTime.map.put(url, finish_time-start_time);				
+				Log.e("loadtime1",url+":"+loadtime+"-"+start_time+"-"+finish_time);
+			}else if(LoadTime.map2.get(url)==null){
+				LoadTime.map2.put(url, loadtime);
+				Log.e("loadtime2",url+":"+loadtime+"-"+start_time+"-"+finish_time);
 			}
     	    return source;
 		}

@@ -35,14 +35,23 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		long sum=0;
+		long sum2=0;
 		Iterator iter = LoadTime.map.entrySet().iterator();
+		Iterator iter2 = LoadTime.map2.entrySet().iterator();
 		while (iter.hasNext()) {
 			Map.Entry entry = (Map.Entry) iter.next();
 			String key = (String) entry.getKey();
 			Long val = (Long) entry.getValue();
 			sum+=val;
 		}
-		Log.e("average:",LoadTime.map.size()+":"+sum*1.0/LoadTime.map.size()+"");
+		while (iter2.hasNext()) {
+			Map.Entry entry = (Map.Entry) iter2.next();
+			String key = (String) entry.getKey();
+			Long val = (Long) entry.getValue();
+			sum2+=val;
+		}
+		Log.e("average1:",LoadTime.map.size()+":"+sum*1.0/LoadTime.map.size()+"");
+		Log.e("average2:",LoadTime.map.size()+":"+sum2*1.0/LoadTime.map2.size()+"");
 	}
 	
 

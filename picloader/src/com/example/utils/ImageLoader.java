@@ -197,11 +197,14 @@ public class ImageLoader
 					if (imageview.getTag().toString().equals(path))
 					{
 						imageview.setImageBitmap(bm);
+						long finish_time=System.currentTimeMillis();
+						long loadTime=finish_time-start_time;
 						if(LoadTime.map.get(path) == null){
-							long finish_time=System.currentTimeMillis();
-							long loadTime=finish_time-start_time;
 							LoadTime.map.put(path, loadTime);
-							Log.e("loadtime",path+":"+loadTime+"-"+start_time+"-"+finish_time);
+							Log.e("loadtime1",path+":"+loadTime+"-"+start_time+"-"+finish_time);
+						}else if(LoadTime.map2.get(path)==null){
+							LoadTime.map2.put(path, loadTime);
+							Log.e("loadtime2",path+":"+loadTime+"-"+start_time+"-"+finish_time);
 						}
 					}
 				};

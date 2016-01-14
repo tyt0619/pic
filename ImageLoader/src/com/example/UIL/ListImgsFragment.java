@@ -175,10 +175,13 @@ public class ListImgsFragment extends Fragment
 						Bitmap loadedImage) {
 					// TODO Auto-generated method stub
 					finish_time=System.currentTimeMillis();
+					int loadtime=(int) (finish_time-start_time);
 					if(LoadTime.map.get(imageUri) == null){
-						LoadTime.map.put(imageUri, finish_time-start_time);
-						int loadtime=(int) (finish_time-start_time);
-						Log.e("loadtime",imageUri+":"+loadtime+"-"+start_time+"-"+finish_time);
+						LoadTime.map.put(imageUri, finish_time-start_time);					
+						Log.e("loadtime1",imageUri+":"+loadtime+"-"+start_time+"-"+finish_time);
+					}else if(LoadTime.map2.get(imageUri)==null){
+						LoadTime.map2.put(imageUri, finish_time-start_time);
+						Log.e("loadtime2",imageUri+":"+loadtime+"-"+start_time+"-"+finish_time);
 					}
 					
 

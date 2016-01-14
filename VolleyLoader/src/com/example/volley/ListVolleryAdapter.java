@@ -122,11 +122,14 @@ public class ListVolleryAdapter extends BaseAdapter implements OnScrollListener{
 	              if (tbm != null) {
 	                System.out.println("<<<<<loading finish:" + imageUrl);
 	                ivImage.setImageBitmap(response.getBitmap());
+	                long finish_time=System.currentTimeMillis();
+	                long loadTime=finish_time-start_time;
 	                if(LoadTime.map.get(imageUrl) == null){
-		                long finish_time=System.currentTimeMillis();
-		                long loadTime=finish_time-start_time;
 						LoadTime.map.put(imageUrl, loadTime);
-						Log.e("loadtime",imageUrl+":"+loadTime+"-"+start_time+"-"+finish_time);
+						Log.e("loadtime1",imageUrl+":"+loadTime+"-"+start_time+"-"+finish_time);
+					}else if(LoadTime.map2.get(imageUrl)==null){
+						LoadTime.map2.put(imageUrl, loadTime);
+						Log.e("loadtime2",imageUrl+":"+loadTime+"-"+start_time+"-"+finish_time);
 					}
 	              } else {
 	                ivImage.setImageResource(R.drawable.pictures_no);

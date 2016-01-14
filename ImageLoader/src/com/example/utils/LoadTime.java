@@ -7,4 +7,5 @@ import java.util.List;
 public class LoadTime {
 	//public static List allTime=new LinkedList();
 	public static HashMap<String , Long> map = new HashMap<String , Long>();
+	public static HashMap<String , Long> map2 = new HashMap<String , Long>();
 }
