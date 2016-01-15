@@ -93,7 +93,7 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 			sum2+=val;
 		}
 		Log.e("average1:",LoadTime.map.size()+":"+sum*1.0/LoadTime.map.size()+"");
-		Log.e("average2:",LoadTime.map.size()+":"+sum2*1.0/LoadTime.map2.size()+"");
+		Log.e("average2:",LoadTime.map2.size()+":"+sum2*1.0/LoadTime.map2.size()+"");
 	}
 
 
