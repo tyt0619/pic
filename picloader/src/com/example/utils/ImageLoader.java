@@ -201,10 +201,10 @@ public class ImageLoader
 						long loadTime=finish_time-start_time;
 						if(LoadTime.map.get(path) == null){
 							LoadTime.map.put(path, loadTime);
-							Log.e("loadtime1",path+":"+loadTime+"-"+start_time+"-"+finish_time);
+							Log.i("loadtime1",path+":"+loadTime);
 						}else if(LoadTime.map2.get(path)==null){
 							LoadTime.map2.put(path, loadTime);
-							Log.e("loadtime2",path+":"+loadTime+"-"+start_time+"-"+finish_time);
+							Log.i("loadtime2",path+":"+loadTime);
 						}
 					}
 				};
@@ -442,11 +442,17 @@ public class ImageLoader
 	 */
 	public File getDiskCacheDir(Context context, String uniqueName)
 	{
+				
 		String cachePath;
 		if (Environment.MEDIA_MOUNTED.equals(Environment
 				.getExternalStorageState()))
 		{
-			cachePath = context.getExternalCacheDir().getPath();
+			File pic_dir=Environment.getExternalStorageDirectory();
+			cachePath=pic_dir.getAbsolutePath()+"/piccache";
+			File cachedir=new File(cachePath);
+			if(!cachedir.exists() || !cachedir.isDirectory()){
+				cachedir.mkdir();
+			}
 		} else
 		{
 			cachePath = context.getCacheDir().getPath();

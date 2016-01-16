@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.widget.Toast;
 
 public abstract class AbsSingleFragmentActivity extends FragmentActivity
 {
@@ -55,8 +56,12 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 			Long val = (Long) entry.getValue();
 			sum2+=val;
 		}
-		Log.e("average1:",LoadTime.map.size()+":"+sum*1.0/LoadTime.map.size()+"");
-		Log.e("average2:",LoadTime.map2.size()+":"+sum2*1.0/LoadTime.map2.size()+"");
+		Log.i("average1:",LoadTime.map.size()+":"+sum*1.0/LoadTime.map.size()+"");
+		Log.i("average2:",LoadTime.map2.size()+":"+sum2*1.0/LoadTime.map2.size()+"");
+		
+		double average1=sum*1.0/LoadTime.map.size();
+		double average2=sum2*1.0/LoadTime.map2.size();
+		Toast.makeText(this, "time1:"+average1+"ms\ntime2:"+average2+"ms", Toast.LENGTH_LONG).show();
 	}
 
 

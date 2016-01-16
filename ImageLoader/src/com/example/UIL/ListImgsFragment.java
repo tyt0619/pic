@@ -159,7 +159,7 @@ public class ListImgsFragment extends Fragment
 				public void onLoadingStarted(String imageUri, View view) {
 					// TODO Auto-generated method stub
 					start_time=System.currentTimeMillis();
-					Log.e("start_time",imageUri+":"+start_time);
+					//Log.e("start_time",imageUri+":"+start_time);
 					
 				}
 
@@ -178,10 +178,10 @@ public class ListImgsFragment extends Fragment
 					int loadtime=(int) (finish_time-start_time);
 					if(LoadTime.map.get(imageUri) == null){
 						LoadTime.map.put(imageUri, finish_time-start_time);					
-						Log.e("loadtime1",imageUri+":"+loadtime+"-"+start_time+"-"+finish_time);
+						Log.i("loadtime1",imageUri+":"+loadtime);
 					}else if(LoadTime.map2.get(imageUri)==null){
 						LoadTime.map2.put(imageUri, finish_time-start_time);
-						Log.e("loadtime2",imageUri+":"+loadtime+"-"+start_time+"-"+finish_time);
+						Log.i("loadtime2",imageUri+":"+loadtime);
 					}
 					
 
@@ -195,7 +195,7 @@ public class ListImgsFragment extends Fragment
 				
 			});
 			convertView.setTag(getItem(position));
-			Log.i("URI", getItem(position));
+			//Log.i("URI", getItem(position));
 			return convertView;
 		}
 

@@ -45,7 +45,7 @@ public class GridViewAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         ImageView imageview=null;
-        System.out.println(position+":This is test");
+        //System.out.println(position+":This is test");
         long start_time=System.currentTimeMillis();
         if (null == view){
             view = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_list_imgs,parent,false);
@@ -83,10 +83,10 @@ public class GridViewAdapter extends BaseAdapter{
 			long loadtime=finish_time-start_time;
 			if(LoadTime.map.get(url) == null){
 				LoadTime.map.put(url, finish_time-start_time);				
-				Log.e("loadtime1",url+":"+loadtime+"-"+start_time+"-"+finish_time);
+				Log.i("loadtime1",url+":"+loadtime);
 			}else if(LoadTime.map2.get(url)==null){
 				LoadTime.map2.put(url, loadtime);
-				Log.e("loadtime2",url+":"+loadtime+"-"+start_time+"-"+finish_time);
+				Log.i("loadtime2",url+":"+loadtime);
 			}
     	    return source;
 		}

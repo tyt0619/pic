@@ -49,7 +49,7 @@ public class MainActivity extends AbsSingleFragmentActivity
 				//第一步：创建HttpClient对象
 				HttpClient httpCient = new DefaultHttpClient();
 				//第二步：创建代表请求的对象,参数是访问的服务器地址
-				HttpGet httpGet = new HttpGet("http://"+serverIp+":"+serverPort+"/test2/GetPicturePath");
+				HttpGet httpGet = new HttpGet("http://"+serverIp+":"+serverPort+"/ImageServer/GetPicturePath");
 				
 				try {
 					//第三步：执行请求，获取服务器发还的相应对象

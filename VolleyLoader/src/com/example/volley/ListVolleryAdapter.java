@@ -64,7 +64,7 @@ public class ListVolleryAdapter extends BaseAdapter implements OnScrollListener{
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         ImageView imageview=null;
-        System.out.println(position+":This is test");
+        //System.out.println(position+":This is test");
         if (null == view){
             view = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_list_imgs,parent,false);
         }
@@ -126,10 +126,10 @@ public class ListVolleryAdapter extends BaseAdapter implements OnScrollListener{
 	                long loadTime=finish_time-start_time;
 	                if(LoadTime.map.get(imageUrl) == null){
 						LoadTime.map.put(imageUrl, loadTime);
-						Log.e("loadtime1",imageUrl+":"+loadTime+"-"+start_time+"-"+finish_time);
+						Log.i("loadtime1",imageUrl+":"+loadTime);
 					}else if(LoadTime.map2.get(imageUrl)==null){
 						LoadTime.map2.put(imageUrl, loadTime);
-						Log.e("loadtime2",imageUrl+":"+loadTime+"-"+start_time+"-"+finish_time);
+						Log.i("loadtime2",imageUrl+":"+loadTime);
 					}
 	              } else {
 	                ivImage.setImageResource(R.drawable.pictures_no);

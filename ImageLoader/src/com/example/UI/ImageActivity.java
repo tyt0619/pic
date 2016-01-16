@@ -7,9 +7,11 @@ import java.io.OutputStream;
 import com.example.UIL.R;
 import com.example.utils.DownloadImgUtils;
 import com.example.utils.ImageSizeUtil;
-import com.example.utils.ImageSizeUtil.ImageSize;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -46,7 +48,9 @@ public class ImageActivity extends FragmentActivity{
 		.bitmapConfig(Bitmap.Config.RGB_565)	 //设置图片的解码类型
 		.build();
 		
+	    ImageSize mImageSize = new ImageSize(ImageSizeUtil.getImageViewSize(image).width,ImageSizeUtil.getImageViewSize(image).height);
 		mImageLoader.displayImage(ImgURI, image,options);
+	    
 	}
 
 	public void downLoad(View view)

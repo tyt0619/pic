@@ -123,7 +123,7 @@ public class ListImgsFragment extends Fragment
 			ImageView imageview = (ImageView) convertView.findViewById(R.id.id_img);
 			imageview.setImageResource(R.drawable.pictures_no);
 			long start_time=System.currentTimeMillis();
-			Log.i("URI", position+":"+getItem(position)+":"+start_time);
+			//Log.i("URI", position+":"+getItem(position)+":"+start_time);
 			mImageLoader.loadImage(getItem(position), imageview, true,start_time,position);	
 			convertView.setTag(getItem(position));
 			
