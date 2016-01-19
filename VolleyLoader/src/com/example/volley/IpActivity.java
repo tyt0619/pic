@@ -18,7 +18,7 @@ public class IpActivity extends Activity{
 	Button button;
 	
 	
-
+//起始界面，输入服务器的ip和端口号
 	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub

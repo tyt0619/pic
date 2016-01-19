@@ -52,16 +52,17 @@ public class GridViewAdapter extends BaseAdapter{
         }
         imageview = (ImageView) view.findViewById(R.id.id_img);
       //  ImageSize imagesize=ImageSizeUtil.getImageViewSize(imageview);
+        //使用picasso框架家在图片
         Picasso.with(mContext) 
-        .load(mList[position]) 
+        .load(mList[position]) //url
        // .resize(imagesize.width, imagesize.height)
         //.centerCrop()
-        .fit()
+        .fit()//自适应imageview大小
         .placeholder(R.drawable.pictures_no) 
         .error(R.drawable.ic_error)
         .tag(mContext)
-        .config(Config.RGB_565)
-        .transform(new CropSquareTransformation(start_time,mList[position]))
+        .config(Config.RGB_565)//图片解码方式
+        .transform(new CropSquareTransformation(start_time,mList[position]))//图片的特殊处理
         .into(imageview);
         return view;
   
@@ -79,6 +80,7 @@ public class GridViewAdapter extends BaseAdapter{
 		@Override
 		public Bitmap transform(Bitmap source) {
 			// TODO Auto-generated method stub
+			//获得结束时间，算得加载时间
 			long finish_time=System.currentTimeMillis();
 			long loadtime=finish_time-start_time;
 			if(LoadTime.map.get(url) == null){

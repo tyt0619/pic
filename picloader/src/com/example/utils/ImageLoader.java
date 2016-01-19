@@ -174,6 +174,8 @@ public class ImageLoader
 	 * 
 	 * @param path
 	 * @param imageView
+	 * @param isFromNet 是否来自网络
+	 * @param start_time 开始时间
 	 */
 	public void loadImage(final String path, final ImageView imageView,
 			final boolean isFromNet,final long start_time,final int pos)
@@ -196,7 +198,9 @@ public class ImageLoader
 					// 将path与getTag存储路径进行比较
 					if (imageview.getTag().toString().equals(path))
 					{
+						//将图片显示到界面
 						imageview.setImageBitmap(bm);
+						//获得结束时间，算得图片的加载时间，存入list中
 						long finish_time=System.currentTimeMillis();
 						long loadTime=finish_time-start_time;
 						if(LoadTime.map.get(path) == null){

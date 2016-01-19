@@ -40,15 +40,16 @@ public class ImageActivity extends FragmentActivity{
 		setContentView(R.layout.imagelayout);
 		ImgURI=getIntent().getExtras().getString("KEY2");
 		image=(ImageView) findViewById(R.id.imagesrc);
-		
+		//配置显示选项
 		options = new DisplayImageOptions.Builder()
-		.showStubImage(R.drawable.pictures_no)
+		.showStubImage(R.drawable.pictures_no)//默认图片
 		.showImageForEmptyUri(R.drawable.ic_empty)
 		.showImageOnFail(R.drawable.ic_error)
 		.bitmapConfig(Bitmap.Config.RGB_565)	 //设置图片的解码类型
 		.build();
 		
-	    ImageSize mImageSize = new ImageSize(ImageSizeUtil.getImageViewSize(image).width,ImageSizeUtil.getImageViewSize(image).height);
+	    //ImageSize mImageSize = new ImageSize(ImageSizeUtil.getImageViewSize(image).width,ImageSizeUtil.getImageViewSize(image).height);
+		//开始加载
 		mImageLoader.displayImage(ImgURI, image,options);
 	    
 	}
@@ -58,7 +59,7 @@ public class ImageActivity extends FragmentActivity{
 		Log.i("click", "done");
 		new  DownLoadAsync().execute("");
 	}
-	
+	//异步下载图片
 	class DownLoadAsync extends AsyncTask<String,Void,Boolean>{
 
 		@Override
@@ -113,7 +114,7 @@ public class ImageActivity extends FragmentActivity{
 					newFile.createNewFile();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					Log.i("err", "IO ERR");
+					Log.e("err", "IO ERR");
 					e.printStackTrace();
 				}
 			 return DownloadImgUtils.downloadImgByUrl(ImgURI,newFile);

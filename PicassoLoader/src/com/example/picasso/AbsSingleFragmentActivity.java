@@ -31,8 +31,6 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 			fm.beginTransaction().add(R.id.id_fragmentContainer, fragment)
 					.commit();
 		}
-		
-		Log.e("size:",LoadTime.map2.size()+"");
 	}
 	
 	
@@ -42,6 +40,7 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+		//获得每张图片的加载时间，算出平均值
 		long sum=0;
 		long sum2=0;
 		Iterator iter = LoadTime.map.entrySet().iterator();

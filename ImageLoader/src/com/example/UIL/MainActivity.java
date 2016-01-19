@@ -15,11 +15,10 @@ public class MainActivity extends AbsSingleFragmentActivity
 	private String[] mUrlStrs=null;
 	private String serverIp;
 	private String serverPort;
-	//public static final int SHOW_RESPONSE = 0;
 	@Override
 	protected Fragment createFragment()
 	{
-		
+		//发送请求给服务器获得图片路径
 		sendRequestWithHttpClient();
 		ListImgsFragment ifrag=new ListImgsFragment();
 		

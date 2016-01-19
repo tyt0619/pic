@@ -35,6 +35,7 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+		//获得每张图片加载的时间，算出平均值
 		long sum=0;
 		long sum2=0;
 		Iterator iter = LoadTime.map.entrySet().iterator();

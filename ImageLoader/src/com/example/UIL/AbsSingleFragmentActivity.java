@@ -49,9 +49,11 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 		}
 		
 		String cachePath;
+		//自定义缓存路径
 		if (Environment.MEDIA_MOUNTED.equals(Environment
 				.getExternalStorageState()))
 		{
+			//如果有sd卡，则存在sd卡下的imagecache目录中
 			File pic_dir=Environment.getExternalStorageDirectory();
 			cachePath=pic_dir.getAbsolutePath()+File.separator+"imagecache";
 			File cachedir=new File(cachePath);
@@ -60,23 +62,24 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 			}
 		} else
 		{
+			//没有sd卡，就存在/data/data/android/包名/cache中
 			cachePath = this.getCacheDir().getPath();
 		}
 		System.out.println(cachePath);
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-		 			.threadPriority(Thread.NORM_PRIORITY - 2)
-			        .threadPoolSize(4)
+		 			.threadPriority(Thread.NORM_PRIORITY - 2)//线程优先级
+			        .threadPoolSize(3)//线程池大小
 				 	.denyCacheImageMultipleSizesInMemory()
 				 	//.discCache(new UnlimitedDiscCache(cacheDir))
-				 	.discCache(new UnlimitedDiscCache(new File(cachePath + File.separator)))
+				 	.discCache(new UnlimitedDiscCache(new File(cachePath + File.separator)))//缓存目录
 				 	//.discCacheFileCount(50)
 				 	.discCacheSize(100*1024*1024)//硬盘缓存的大小
 			        .discCacheFileNameGenerator(new Md5FileNameGenerator())//保存uri的名称用md5
 			        //.discCacheFileNameGenerator(new HashCodeFileNameGenerator())//将保存时的URI用hashcode加密
-			        .tasksProcessingOrder(QueueProcessingType.LIFO) 
-			        .memoryCache(new LruMemoryCache((int) Runtime.getRuntime().maxMemory()/8))
+			        .tasksProcessingOrder(QueueProcessingType.LIFO) //调度方式
+			        .memoryCache(new LruMemoryCache((int) Runtime.getRuntime().maxMemory()/8))//内存缓存的大小
 			        .build();
-			        ImageLoader.getInstance().init(config);
+			        ImageLoader.getInstance().init(config);//初始化
 			        
 
 	}
@@ -87,6 +90,7 @@ public abstract class AbsSingleFragmentActivity extends FragmentActivity
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
+		//获得每张图片的打印时间，算出平均值
 		super.onDestroy();
 		long sum=0;
 		long sum2=0;

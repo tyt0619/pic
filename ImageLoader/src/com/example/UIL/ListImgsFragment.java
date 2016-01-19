@@ -48,12 +48,12 @@ public class ListImgsFragment extends Fragment
 		mUrlStrs=getArguments().getStringArray("KEY");
 		//mImageLoader = ImageLoader.getInstance();
 		
-		
+		//设置显示选项
 		options = new DisplayImageOptions.Builder()
 		.showStubImage(R.drawable.ic_stub)
 		.showImageForEmptyUri(R.drawable.ic_empty)
 		.showImageOnFail(R.drawable.ic_error)
-		.cacheInMemory(true)
+		.cacheInMemory(true)//开启硬盘缓存和内存缓存
 		.cacheOnDisc(true)
 		.bitmapConfig(Bitmap.Config.RGB_565)	 //设置图片的解码类型
 		.build();
@@ -118,13 +118,13 @@ public class ListImgsFragment extends Fragment
 	}
 	
 	
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		mImageLoader.clearMemoryCache();
-		mImageLoader.clearDiscCache();
-	}
+//	@Override
+//	public void onDestroy() {
+//		// TODO Auto-generated method stub
+//		super.onDestroy();
+//		mImageLoader.clearMemoryCache();
+//		mImageLoader.clearDiscCache();
+//	}
 
 
 	private class ListImgItemAdaper extends ArrayAdapter<String>
@@ -133,7 +133,7 @@ public class ListImgsFragment extends Fragment
 		public ListImgItemAdaper(Context context, int resource, String[] datas)
 		{
 			super(getActivity(), 0, datas);
-			Log.e("TAG", "ListImgItemAdaper");
+			Log.i("TAG", "ListImgItemAdaper");
 		}
 
 		@Override
@@ -152,9 +152,11 @@ public class ListImgsFragment extends Fragment
 			//mImageLoader.loadImage(getItem(position), imageview, true);
 			
 			//mImageLoader..getInstance().displayImage(picUrl, imageView001,new ImageLoaderPicture(this).getOptions(),new SimpleImageLoadingListener());
+			//显示图片，添加图片状态的监听
 			mImageLoader.displayImage(mUrlStrs[position], imageview, options,new ImageLoadingListener(){
 
 				long start_time,finish_time;
+				//加载开始时获得起始时间
 				@Override
 				public void onLoadingStarted(String imageUri, View view) {
 					// TODO Auto-generated method stub
@@ -169,7 +171,7 @@ public class ListImgsFragment extends Fragment
 					// TODO Auto-generated method stub
 					
 				}
-
+//加载结束是获得结束时间，算得图片加载时间
 				@Override
 				public void onLoadingComplete(String imageUri, View view,
 						Bitmap loadedImage) {

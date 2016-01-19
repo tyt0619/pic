@@ -50,6 +50,7 @@ public class ImageActivity extends FragmentActivity{
 	public void downLoad(View view)
 	{
 		Log.i("click", "done");
+		//异步下载
 		new  DownLoadAsync().execute("");
 	}
 	

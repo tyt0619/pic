@@ -31,6 +31,7 @@ public class ImageActivity extends FragmentActivity{
 		setContentView(R.layout.imagelayout);
 		ImgURI=getIntent().getExtras().getString("KEY2");
 		image=(ImageView) findViewById(R.id.imagesrc);
+		//异步加载
 		new ImageAsync().execute("");
 	}
 
@@ -38,11 +39,12 @@ public class ImageActivity extends FragmentActivity{
 	{
 		Log.i("click", "done");
 		//download  uri= ImgURI
+		//异步下载
 		new DownLoadAsync().execute("");
 //		
 	}
 	
-	
+	//下载图片
 	class DownLoadAsync extends AsyncTask<String,Void,Boolean>{
 
 		@Override
@@ -69,6 +71,7 @@ public class ImageActivity extends FragmentActivity{
 			//String path=null;
 			if(ExistSDCard())
 			{
+				//存在sd卡就获得sd卡中的pictures目录，没有就新建
 				String pic_dir=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath();
 				File file=new File(pic_dir);
 				if(!file.exists() && !file.isDirectory()){
@@ -78,6 +81,7 @@ public class ImageActivity extends FragmentActivity{
 				Log.i("SDcard", "prepared");
 			}
 			else{
+				//没有sd卡。就存在/data/data/android/包名/file中
 				try {
 					String name=System.currentTimeMillis()+".jpg";
 					OutputStream os=ImageActivity.this.openFileOutput(name, Context.MODE_WORLD_READABLE|Context.MODE_WORLD_WRITEABLE);
@@ -97,15 +101,17 @@ public class ImageActivity extends FragmentActivity{
 					newFile.createNewFile();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					Log.i("err", "IO ERR");
+					Log.e("err", "IO ERR");
 					e.printStackTrace();
 				}
+			//下载图片至newfile
 			 return DownloadImgUtils.downloadImgByUrl(ImgURI,newFile);
 		}
 		
 		@Override
 		protected void onPostExecute(Boolean result) {
 			// TODO Auto-generated method stub
+			//显示下载结果，成功就显示途径
 			if(result)
 			{
 				Toast.makeText(ImageActivity.this, "下载成功\n路径:"+path, Toast.LENGTH_LONG).show();
@@ -123,6 +129,7 @@ public class ImageActivity extends FragmentActivity{
 		protected Void doInBackground(String... arg0) {
 			// TODO Auto-generated method stub
 			//ImageSize imagesize=ImageSizeUtil.getImageViewSize(image);
+			//加载放大的图片
 			imap=DownloadImgUtils.downloadImgByUrl(ImgURI,2,4);
 			return null;
 		}
@@ -130,6 +137,7 @@ public class ImageActivity extends FragmentActivity{
 		@Override
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
+			//将图片显示到界面上
 			super.onPostExecute(result);
 			image.setImageBitmap(imap);
 		}

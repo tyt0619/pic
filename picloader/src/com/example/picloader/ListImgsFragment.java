@@ -48,6 +48,7 @@ public class ListImgsFragment extends Fragment
 	{
 		super.onCreate(savedInstanceState);
 		mUrlStrs=getArguments().getStringArray("KEY");
+		//初始化，线程池的大小为3，加载方式为后进先出
 		mImageLoader = ImageLoader.getInstance(3, Type.LIFO);
 		
 	}
@@ -64,7 +65,6 @@ public class ListImgsFragment extends Fragment
 		mGridView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//				upImagePagerActivity(position);
 				String URI=(String) view.getTag();
 				
 				upImagePagerActivity(URI,view);
@@ -109,7 +109,7 @@ public class ListImgsFragment extends Fragment
 		public ListImgItemAdaper(Context context, int resource, String[] datas)
 		{
 			super(getActivity(), 0, datas);
-			Log.e("TAG", "ListImgItemAdaper");
+			//Log.e("TAG", "ListImgItemAdaper");
 		}
 
 		@Override
@@ -121,9 +121,12 @@ public class ListImgsFragment extends Fragment
 						R.layout.item_fragment_list_imgs, parent, false);
 			}
 			ImageView imageview = (ImageView) convertView.findViewById(R.id.id_img);
+			//设置未加载时的默认图片
 			imageview.setImageResource(R.drawable.pictures_no);
+			//获得起始时间
 			long start_time=System.currentTimeMillis();
 			//Log.i("URI", position+":"+getItem(position)+":"+start_time);
+			//开始加载
 			mImageLoader.loadImage(getItem(position), imageview, true,start_time,position);	
 			convertView.setTag(getItem(position));
 			

@@ -55,8 +55,6 @@ public class ListImgsFragment extends Fragment
 				upImagePagerActivity(URI,view);
 			}
 		});
-		//在猛的滑动时不加载图片
-		//mGridView.setOnScrollListener(new PauseOnScrollListener(mImageLoader, false, true));
 		return view;
 	}
 	
@@ -69,7 +67,7 @@ public class ListImgsFragment extends Fragment
 	}
 
 	
-	
+	//设置adapter
 	private void setUpAdapter()
 	{
 		if (getActivity() == null || mGridView == null)

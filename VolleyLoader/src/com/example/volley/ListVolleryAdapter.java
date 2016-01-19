@@ -33,7 +33,7 @@ public class ListVolleryAdapter extends BaseAdapter implements OnScrollListener{
     Context mContext = null;
     String[] mList = null;
     private ImageLoader mImageLoader;
-    private RequestQueue mRequestQueue;
+    private RequestQueue mRequestQueue;//请求队列
     GridView mGridView;
     
     
@@ -43,7 +43,7 @@ public class ListVolleryAdapter extends BaseAdapter implements OnScrollListener{
         mRequestQueue = Volley.newRequestQueue(mContext);
         this.mGridView=mGridView;
         mGridView.setOnScrollListener(this);
-        
+        //创建imageloader
         mImageLoader = new ImageLoader(mRequestQueue,  new BitmapCache());
     }
     @Override
@@ -89,6 +89,7 @@ public class ListVolleryAdapter extends BaseAdapter implements OnScrollListener{
 	      isFirstEnter = false;
 	    }
 	  }
+	//屏幕滑动时
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 	    // 仅当GridView静止时才去下载图片，GridView滑动时取消所有正在下载的任务
@@ -105,6 +106,7 @@ public class ListVolleryAdapter extends BaseAdapter implements OnScrollListener{
 	
 	private void loadBitmaps(int firstVisibleItem, int visibleItemCount) {
 	    try {
+	    	//加载可见界面上的图片
 	      for (int i = firstVisibleItem; i < firstVisibleItem + visibleItemCount; i++) {
 	        final String imageUrl = mList[i];
 	        final ImageView ivImage = (ImageView)mGridView .findViewWithTag(imageUrl);
@@ -112,7 +114,7 @@ public class ListVolleryAdapter extends BaseAdapter implements OnScrollListener{
 	        ImageSize imageSize = ImageSizeUtil.getImageViewSize(ivImage);
 	        
 	        ImageContainer ic = mImageLoader.get(imageUrl, new ImageListener() {
-
+//响应成功
 	          @Override
 	          public void onResponse(ImageContainer response, boolean isImmediate) {
 	            String imageUrl = response.getRequestUrl();
@@ -122,6 +124,7 @@ public class ListVolleryAdapter extends BaseAdapter implements OnScrollListener{
 	              if (tbm != null) {
 	                System.out.println("<<<<<loading finish:" + imageUrl);
 	                ivImage.setImageBitmap(response.getBitmap());
+	                //获得结束时间，算出加载时间
 	                long finish_time=System.currentTimeMillis();
 	                long loadTime=finish_time-start_time;
 	                if(LoadTime.map.get(imageUrl) == null){
